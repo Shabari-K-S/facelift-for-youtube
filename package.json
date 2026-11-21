@@ -1,0 +1,21 @@
+{
+  "name": "facelift-for-youtube",
+  "description": "A local redesign of the YouTube interface for Firefox and Zen.",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22.18.0" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && node scripts/build.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "143.0.1",
+    "esbuild": "0.28.2",
+    "fflate": "0.8.3",
+    "jsdom": "27.4.0",
+    "typescript": "7.0.2"
+  }
+}

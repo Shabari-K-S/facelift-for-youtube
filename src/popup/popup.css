@@ -1,0 +1,58 @@
+:root {
+  color-scheme: light dark;
+  --paper: #fbfdfe;
+  --ink: #182830;
+  --muted: #49626d;
+  --line: #cad7db;
+  --accent: #006675;
+  --tint: #e2f0f1;
+  font: 15px/1.4 system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #212124;
+    --ink: #f1eff1;
+    --muted: #bcb8c0;
+    --line: #3c3b3f;
+    --accent: #e6bb8c;
+    --tint: #34302d;
+  }
+}
+* { box-sizing: border-box; }
+body { width: 334px; max-width: 100vw; margin: 0; padding: 16px; }
+header { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+h1 { margin: 0; font-size: 24px; letter-spacing: -.05em; line-height: 1.03; }
+h1 small { color: var(--muted); font-size: 14px; letter-spacing: -.015em; font-weight: 500; }
+fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+legend { padding: 0; }
+.sr { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+label {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 4px;
+  cursor: pointer;
+}
+.layout {
+  border-inline-start: 3px solid var(--accent);
+  background: var(--tint);
+  border-radius: 0 5px 5px 0;
+  padding: 10px 12px;
+}
+.layout small { display: block; color: var(--muted); font-size: 12px; }
+.group { margin-top: 15px; }
+.group legend { font-size: 13px; color: var(--muted); font-weight: 650; }
+.group label { border-bottom: 1px solid var(--line); }
+.buttons { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+input { width: 18px; height: 18px; flex: none; margin: 0; accent-color: var(--accent); cursor: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+fieldset:disabled label { cursor: default; }
+footer { color: var(--muted); font-size: 12px; margin-top: 14px; }
+button { color: var(--accent); background: transparent; border: 1px solid var(--line); border-radius: 3px; font: inherit; padding: 5px 8px; }
+@media (max-width: 260px) {
+  .buttons { grid-template-columns: 1fr; }
+}

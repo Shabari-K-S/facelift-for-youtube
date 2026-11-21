@@ -1,0 +1,85 @@
+@import "./filters.css";
+@import "./pages.css";
+
+html[data-facelift-layout] {
+  --fl-canvas: #edf2f4;
+  --fl-paper: #fbfdfe;
+  --fl-ink: #182830;
+  --fl-muted: #49626d;
+  --fl-rule: #cad7db;
+  --fl-current: #006675;
+  --fl-tint: #d9edef;
+  --fl-type: system-ui, sans-serif;
+}
+html[data-facelift-layout]:is([dark]:not([dark="false"]), [dark-theme], :has(> body[dark])) {
+  --fl-canvas: #18181b;
+  --fl-paper: #212124;
+  --fl-ink: #f1eff1;
+  --fl-muted: #bcb8c0;
+  --fl-rule: #3c3b3f;
+  --fl-current: #e6bb8c;
+  --fl-tint: #34302d;
+}
+
+html[data-facelift-layout] :is(body, ytd-app, ytm-app, ytd-page-manager) {
+  background-color: var(--fl-canvas) !important;
+}
+html[data-facelift-layout] :is(ytd-browse, ytd-search, ytd-watch-metadata, ytd-guide-renderer, ytm-app) {
+  --yt-spec-base-background: var(--fl-canvas);
+  --yt-spec-text-primary: var(--fl-ink);
+  --yt-spec-text-secondary: var(--fl-muted);
+}
+html[data-facelift-layout] :is(
+  ytd-masthead #background, #masthead-container #frosted-glass,
+  #guide-content, ytd-mini-guide-renderer, .mobile-topbar-header, ytm-pivot-bar-renderer
+) {
+  background: var(--fl-paper) !important;
+  box-shadow: none !important;
+}
+html[data-facelift-layout] :is(ytd-masthead, .mobile-topbar-header) {
+  background-color: var(--fl-paper) !important;
+  box-shadow: inset 0 -1px var(--fl-rule) !important;
+}
+html[data-facelift-layout] :is(ytd-searchbox #container, .ytSearchboxComponentInputBox) {
+  background: var(--fl-canvas) !important;
+  border-color: var(--fl-rule) !important;
+  border-start-start-radius: 7px !important;
+  border-end-start-radius: 7px !important;
+  box-shadow: none !important;
+}
+html[data-facelift-layout] :is(ytd-searchbox #container, .ytSearchboxComponentInputBox):focus-within {
+  border-color: var(--fl-current) !important;
+  outline: 1px solid var(--fl-current);
+}
+html[data-facelift-layout] :is(ytd-searchbox #search-icon-legacy, .ytSearchboxComponentSearchButton) {
+  background: var(--fl-paper) !important;
+  border-color: var(--fl-rule) !important;
+  border-start-end-radius: 7px !important;
+  border-end-end-radius: 7px !important;
+}
+html[data-facelift-layout] :is(ytd-guide-renderer, ytd-mini-guide-renderer) {
+  background: var(--fl-paper) !important;
+  border-inline-end: 1px solid var(--fl-rule);
+}
+html[data-facelift-layout] :is(ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer)[is-active] a {
+  background: var(--fl-tint) !important;
+  border-inline-start: 3px solid var(--fl-current);
+  border-radius: 4px !important;
+  box-sizing: border-box;
+}
+html[data-facelift-layout] :is(ytd-feed-filter-chip-bar-renderer, ytd-feed-filter-chip-bar-renderer #chips-wrapper) {
+  background: var(--fl-canvas) !important;
+}
+html[data-facelift-layout] yt-chip-cloud-chip-renderer #chip-container {
+  border-radius: 5px !important;
+  font-family: var(--fl-type);
+}
+html[data-facelift-layout] yt-chip-cloud-chip-renderer[selected] #chip-container {
+  background: var(--fl-ink) !important;
+  color: var(--fl-paper) !important;
+}
+html[data-facelift-layout] :is(ytd-masthead, ytd-guide-renderer, ytd-browse, ytd-search, ytd-watch-metadata, ytm-browse)
+  :is(a, button, [tabindex="0"]):focus-visible {
+  outline: 2px solid var(--fl-current) !important;
+  outline-offset: 2px;
+}

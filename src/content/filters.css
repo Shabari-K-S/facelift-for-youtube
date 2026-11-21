@@ -1,0 +1,74 @@
+/* Hide the tile/entry itself so its grid space and keyboard stop go away with it. */
+html[data-facelift-hide-shorts] :is(
+  ytd-reel-shelf-renderer, ytm-reel-shelf-renderer, ytd-reel-item-renderer,
+  ytd-rich-shelf-renderer[is-shorts], ytm-rich-shelf-renderer[is-shorts],
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts], ytd-reel-shelf-renderer),
+  ytm-rich-section-renderer:has(ytm-reel-shelf-renderer, ytm-rich-shelf-renderer[is-shorts]),
+  :is(ytd-rich-section-renderer, ytm-rich-section-renderer, grid-shelf-view-model):has(
+    ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2
+  ):not(:has(a[href^="/watch"])),
+  yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2,
+  ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2),
+  :is(ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer, ytm-pivot-bar-item-renderer):has(
+    a[href="/shorts"], a[href^="/shorts/"], .pivot-shorts
+  ),
+  :is(ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer):has(
+    a:not([href]):is([title="Shorts" i], [aria-label="Shorts" i]), [data-facelift-guide-shorts]
+  ),
+  :is(yt-tab-shape, tp-yt-paper-tab, ytm-tab-renderer):has(a[href$="/shorts"]),
+  yt-tab-shape[tab-title="Shorts" i],
+  yt-chip-cloud-chip-renderer:has([title="Shorts" i]),
+  :is(ytd-rich-item-renderer, yt-lockup-view-model, ytm-compact-video-renderer):has(> a[href^="/shorts/"]),
+  :is(ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer, ytd-compact-video-renderer,
+      ytd-playlist-video-renderer, ytm-video-with-context-renderer, ytm-compact-video-renderer,
+      yt-lockup-view-model):has(
+    :is(a#thumbnail, a#video-title, a#video-title-link, a.yt-lockup-view-model__content-image,
+      a.ytLockupViewModelContentImage, a.media-item-thumbnail-container, a.compact-media-item-image)[href^="/shorts/"]
+  )
+) { display: none !important; }
+
+html[data-facelift-hide-memberships][data-facelift-page="home"]
+  :is(ytd-rich-section-renderer, ytm-rich-section-renderer, ytd-rich-shelf-renderer,
+      ytd-shelf-renderer, ytm-shelf-renderer, ytm-rich-shelf-renderer, grid-shelf-view-model):has([data-facelift-membership-title]) {
+  display: none !important;
+}
+
+html[data-facelift-compact-subscriptions] :is(ytd-guide-section-renderer, ytd-guide-collapsible-section-entry-renderer)
+  [data-facelift-subscription-detail] { display: none !important; }
+
+/* Playables is a destination, not a topic. Never filter /gaming or video titles. */
+html[data-facelift-hide-playables] :is(
+  ytd-mini-game-card-renderer, ytm-mini-game-card-renderer, yt-mini-game-card-view-model,
+  ytd-rich-shelf-renderer[is-mini-game-shelf], ytd-rich-shelf-renderer[is-playables],
+  :is(ytd-rich-section-renderer, ytm-rich-section-renderer):has(
+    [is-mini-game-shelf], [is-playables], #header a[href^="/playables"], #title-container a[href^="/playables"]
+  ),
+  :is(ytd-rich-shelf-renderer, ytd-shelf-renderer, ytm-rich-shelf-renderer,
+      ytm-shelf-renderer, ytd-reel-shelf-renderer):has(#header a[href^="/playables"], #title-container a[href^="/playables"]),
+  :is(ytd-rich-section-renderer, ytm-rich-section-renderer, ytd-horizontal-card-list-renderer,
+      ytd-rich-shelf-renderer, ytm-rich-shelf-renderer):has(a[href^="/playables/"]):not(:has(a[href^="/watch"])),
+  :is(ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer, ytm-pivot-bar-item-renderer,
+      yt-chip-cloud-chip-renderer):has(a[href="/playables"], a[href^="/playables/"], a[href^="/playables?"]),
+  :is(ytd-rich-item-renderer, yt-lockup-view-model, ytm-compact-video-renderer):has(> a[href^="/playables/"]),
+  :is(ytd-rich-item-renderer, ytd-video-renderer, ytd-compact-video-renderer, ytm-video-with-context-renderer,
+      yt-lockup-view-model):has(
+    yt-mini-game-card-view-model, ytd-mini-game-card-renderer,
+    :is(a#thumbnail, a#video-title, a.yt-lockup-view-model__content-image, a.ytLockupViewModelContentImage,
+      a.media-item-thumbnail-container)[href^="/playables/"]
+  )
+) { display: none !important; }
+
+html[data-facelift-hide-voice] :is(
+  #voice-search-button, #voice-search-button-container, .mobile-topbar-header-voice-search-button,
+  .search-bar-entry-point-voice-search-button, ytd-masthead button[aria-label="Search with your voice" i]
+) { display: none !important; }
+html[data-facelift-hide-download] :is(
+  ytd-download-button-renderer, ytm-download-button-renderer, yt-download-button-view-model,
+  [data-facelift-action="download"]
+) { display: none !important; }
+html[data-facelift-hide-join] :is(
+  #sponsor-button, ytd-sponsor-button-renderer, ytm-sponsor-button-renderer, [data-facelift-action="join"]
+) { display: none !important; }
+html[data-facelift-hide-thanks] :is(
+  ytd-super-thanks-button-renderer, [data-facelift-action="thanks"]
+) { display: none !important; }

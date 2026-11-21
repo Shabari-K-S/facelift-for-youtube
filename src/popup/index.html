@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Facelift for YouTube</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="../icons/32.png" alt="" width="32" height="32">
+    <h1>Facelift <small>for YouTube</small></h1>
+  </header>
+  <main>
+    <fieldset id="controls" disabled>
+      <legend class="sr">YouTube appearance</legend>
+      <label class="layout">
+        <span><strong>Use the redesigned layout</strong><small>Video grids, search results and watch pages</small></span>
+        <input id="layout" type="checkbox">
+      </label>
+      <fieldset class="group">
+        <legend>Hide from browsing</legend>
+        <label>Shorts <input id="hide-shorts" type="checkbox"></label>
+        <label>Playables games <input id="hide-playables" type="checkbox"></label>
+        <label>Membership promotions on Home <input id="hide-memberships" type="checkbox"></label>
+        <label>Sidebar subscription channels <input id="compact-subscriptions" type="checkbox"></label>
+      </fieldset>
+      <fieldset class="group">
+        <legend>Hide buttons</legend>
+        <div class="buttons">
+          <label>Voice search <input id="hide-voice" type="checkbox"></label>
+          <label>Thanks <input id="hide-thanks" type="checkbox"></label>
+          <label>Download <input id="hide-download" type="checkbox"></label>
+          <label>Join <input id="hide-join" type="checkbox"></label>
+        </div>
+      </fieldset>
+    </fieldset>
+  </main>
+  <footer>
+    <span id="status" role="status">Reading local settings...</span>
+    <button id="retry" type="button" hidden>Retry</button>
+  </footer>
+</body>
+</html>

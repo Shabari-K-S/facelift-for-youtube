@@ -1,0 +1,140 @@
+/* A single wrapping grid on Home, Subscriptions and channel video tabs.
+   Continuations and native shelves stay in DOM order and occupy a full row. */
+html[data-facelift-layout] ytd-browse ytd-rich-grid-renderer > #contents:not([hidden]) {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 256px), 1fr)) !important;
+  align-items: start;
+  gap: 26px 18px;
+  box-sizing: border-box;
+  inline-size: 100% !important;
+  max-inline-size: 1620px;
+  padding-inline: clamp(12px, 2vw, 32px) !important;
+  margin-inline: auto !important;
+}
+html[data-facelift-layout] ytd-browse ytd-rich-grid-renderer > #contents > ytd-rich-grid-row:not([hidden]),
+html[data-facelift-layout] ytd-browse ytd-rich-grid-renderer > #contents > ytd-rich-grid-row:not([hidden]) > #contents:not([hidden]) {
+  display: contents !important;
+}
+html[data-facelift-layout] ytd-browse ytd-rich-grid-renderer :is(
+  ytd-rich-grid-renderer > #contents, ytd-rich-grid-row > #contents
+) > ytd-rich-item-renderer {
+  margin: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+html[data-facelift-layout] ytd-browse :is(ytd-rich-grid-renderer, ytd-rich-grid-row) > #contents
+  > :not(ytd-rich-item-renderer, ytd-rich-grid-row) { grid-column: 1 / -1; }
+
+html[data-facelift-layout] :is(ytd-browse, ytd-search, #related, ytm-browse, ytm-search)
+  :is(ytd-thumbnail, yt-thumbnail-view-model, .ytThumbnailViewModelHost, .video-thumbnail-container-large) {
+  border-radius: 6px !important;
+}
+html[data-facelift-layout] :is(ytd-rich-grid-media, ytd-rich-item-renderer, ytd-grid-video-renderer)
+  :is(#video-title, .yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle) {
+  color: var(--fl-ink) !important;
+  font: 620 16px/1.35 var(--fl-type) !important;
+  letter-spacing: -.016em;
+}
+html[data-facelift-layout] :is(ytd-rich-grid-media, ytd-video-renderer, ytd-compact-video-renderer)
+  :is(#metadata-line, #channel-name) { color: var(--fl-muted) !important; }
+
+/* Search keeps its native secondary column. Only the list gets a reading measure. */
+html[data-facelift-layout][data-facelift-page="search"] ytd-search #primary {
+  max-inline-size: 1080px !important;
+  min-inline-size: 0;
+}
+html[data-facelift-layout] ytd-search :is(ytd-video-renderer, ytd-channel-renderer, ytd-playlist-renderer) {
+  padding-block: 12px !important;
+  margin-block: 0 !important;
+  border-block-end: 1px solid var(--fl-rule);
+}
+html[data-facelift-layout] ytd-search :is(ytd-video-renderer #video-title,
+  yt-lockup-view-model .yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle) {
+  color: var(--fl-ink) !important;
+  font: 630 clamp(16px, 1.45vw, 20px)/1.32 var(--fl-type) !important;
+}
+@media (min-width: 850px) {
+  html[data-facelift-layout] ytd-search :is(
+    ytd-video-renderer > #dismissible > ytd-thumbnail, yt-lockup-view-model.yt-lockup-view-model--horizontal .yt-lockup-view-model__content-image
+  ) {
+    flex: 0 0 clamp(200px, 25%, 292px) !important;
+    max-inline-size: 292px !important;
+    margin-inline-end: 18px !important;
+  }
+}
+
+/* Leave the video element, fullscreen, theater and miniplayer sizing to the player. */
+html[data-facelift-layout][data-facelift-page="watch"] ytd-watch-metadata {
+  margin-block-start: 14px !important;
+}
+html[data-facelift-layout] ytd-watch-metadata :is(h1, h1 yt-formatted-string) {
+  color: var(--fl-ink) !important;
+  font: 680 clamp(20px, 1.8vw, 28px)/1.24 var(--fl-type) !important;
+  letter-spacing: -.028em;
+}
+html[data-facelift-layout] ytd-watch-metadata #top-row {
+  padding-block: 6px 12px !important;
+  border-block-end: 1px solid var(--fl-rule);
+  column-gap: 12px;
+  row-gap: 8px;
+}
+html[data-facelift-layout] ytd-watch-metadata #description {
+  background: var(--fl-paper) !important;
+  border-inline-start: 3px solid var(--fl-current);
+  border-radius: 0 5px 5px 0 !important;
+}
+html[data-facelift-layout] ytd-text-inline-expander #expanded {
+  max-inline-size: 76ch;
+  line-height: 1.55;
+}
+@media (min-width: 1100px) {
+  html[data-facelift-layout] ytd-watch-flexy[is-two-columns_]:not([theater], [fullscreen])
+    #secondary.ytd-watch-flexy {
+    --ytd-watch-flexy-sidebar-width: clamp(300px, 25vw, 360px);
+    width: var(--ytd-watch-flexy-sidebar-width) !important;
+  }
+}
+
+html[data-facelift-layout][data-facelift-page="channel"] :is(ytd-c4-tabbed-header-renderer #channel-name,
+  yt-page-header-view-model h1, .yt-page-header-view-model__page-header-title, .ytPageHeaderViewModelPageHeaderTitle),
+html[data-facelift-layout] ytd-playlist-header-renderer h1 {
+  font-family: var(--fl-type) !important;
+  letter-spacing: -.03em;
+  color: var(--fl-ink) !important;
+}
+html[data-facelift-layout] :is(ytd-browse #tabs-container, ytd-browse yt-tab-group-shape) {
+  background-color: var(--fl-canvas) !important;
+  border-block-end: 1px solid var(--fl-rule);
+}
+html[data-facelift-layout] :is(ytd-playlist-video-renderer, ytm-playlist-video-renderer) {
+  border-block-end: 1px solid var(--fl-rule);
+  padding-block: 5px !important;
+}
+html[data-facelift-layout] ytd-playlist-video-renderer #index {
+  color: var(--fl-muted) !important;
+  font-variant-numeric: tabular-nums;
+}
+html[data-facelift-layout] :is(ytd-playlist-panel-video-renderer, ytm-playlist-panel-video-renderer)[selected] {
+  background: var(--fl-tint) !important;
+  border-inline-start: 3px solid var(--fl-current);
+}
+
+/* Keep the mobile single-column feed and its native touch targets. */
+html[data-facelift-layout] ytm-app ytm-video-with-context-renderer {
+  margin: 0 clamp(8px, 2vw, 16px) 16px !important;
+  border-block-end: 1px solid var(--fl-rule);
+}
+html[data-facelift-layout] ytm-app :is(.media-item-headline, .compact-media-item-headline, .slim-video-information-title) {
+  color: var(--fl-ink) !important;
+  font-family: var(--fl-type) !important;
+  font-weight: 620 !important;
+  line-height: 1.35;
+}
+html[data-facelift-layout] ytm-app :is(.media-item-byline, .compact-media-item-byline) {
+  color: var(--fl-muted) !important;
+}
+html[data-facelift-layout] ytm-app :is(ytm-slim-video-metadata-section-renderer, ytm-slim-video-action-bar-renderer) {
+  background: var(--fl-paper) !important;
+  border-block-end: 1px solid var(--fl-rule);
+}
